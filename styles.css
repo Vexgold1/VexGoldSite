@@ -1,0 +1,413 @@
+/*
+  styles.css — минималистичный стиль для сайта "Myself"
+  Цвета: тёмный фон, голубые акценты, белый текст
+*/
+
+:root {
+  --color-bg-main: #020616;
+  --color-bg-card: rgba(7, 16, 40, 0.9);
+  --color-accent: #38bdf8; /* голубой */
+  --color-accent-soft: #0ea5e9;
+  --color-text: #e5f2ff;
+  --color-text-muted: #9ca3af;
+  --border-radius-lg: 16px;
+  --border-radius-md: 10px;
+  --transition-fast: 0.15s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg-main);
+  overflow-x: hidden;
+}
+
+/* Обёртка страницы и фон-видео */
+.page {
+  position: relative;
+}
+
+.bg-video-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.1) brightness(0.8);
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%),
+              radial-gradient(circle at bottom, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.98));
+  z-index: -1;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Шапка и навигация (минимализм) */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-logo {
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.site-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.site-nav__link {
+  position: relative;
+  padding-bottom: 4px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition-fast);
+}
+
+.site-nav__link:hover {
+  color: var(--color-text);
+}
+
+.site-nav__link:hover::after {
+  width: 100%;
+}
+
+.site-nav__link--active {
+  color: #ffffff;
+}
+
+.site-nav__link--active::after {
+  width: 100%;
+}
+
+/* Основное содержимое */
+.site-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 24px 40px;
+}
+
+.hero {
+  margin: 32px 0 24px;
+}
+
+.hero__title {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.hero__subtitle {
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  max-width: 540px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.section-intro,
+.about-block__text {
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  margin: 18px 0 10px;
+}
+
+/* Теги интересов */
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-list__item {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Карточки целей */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.goal-card {
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.75);
+  padding: 16px 14px;
+}
+
+.goal-card__title {
+  font-size: 1.02rem;
+  margin-bottom: 8px;
+}
+
+.goal-card__text {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+/* Пустые карточки целей (под твой текст) */
+.goal-card--empty {
+  border-style: dashed;
+  border-color: rgba(148, 163, 184, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-card--empty span {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Соцсети — минималистичные иконки */
+.socials-minimal {
+  margin-top: 24px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid transparent;
+  transition: transform var(--transition-fast),
+              border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.social-icon__inner {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Цвета иконок */
+.social-icon--telegram {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.55);
+}
+
+.social-icon--github {
+  border-color: #6b7280;
+  box-shadow: 0 0 16px rgba(107, 114, 128, 0.6);
+}
+
+.social-icon--instagram {
+  border-color: #f97316;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.65);
+}
+
+.social-icon:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Подвал */
+.site-footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 24px;
+}
+
+.site-footer__text {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .site-main {
+    padding-inline: 16px;
+  }
+
+  .goals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-icons {
+    gap: 16px;
+  }
+}
+
+/* Акцентный блок на странице "Обо мне" */
+.about-highlight {
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border-left: 3px solid var(--color-accent);
+  background: rgba(15, 23, 42, 0.85);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.about-highlight strong {
+  color: var(--color-accent);
+}
+
+/* Блок под Telegram‑канал */
+.telegram-section {
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.telegram-card {
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.85);
+  padding: 16px 18px;
+}
+
+.telegram-card__title {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.telegram-card__text {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.telegram-card__btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.telegram-card__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
+}
+/* Плиточные иконки приложений (как на втором скрине) */
+.socials-minimal {
+  margin-top: 24px;
+}
+
+.social-icons--apps {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.social-icon-app {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.45);
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              filter var(--transition-fast);
+}
+
+.social-icon-app__svg {
+  width: 24px;
+  height: 24px;
+}
+
+.social-icon-app--telegram {
+  background: #229ed9; /* синий телеграма */
+}
+
+.social-icon-app--github {
+  background: #111827; /* тёмный квадрат, как у гитхаба */
+}
+
+.social-icon-app--instagram {
+  background: radial-gradient(circle at 30% 30%, #fdf497 0, #fd5949 45%, #d6249f 75%, #285aeb 100%);
+}
+.social-icon-app--tiktok {
+  background: #000000;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+}
+
+.social-icon-app:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+  filter: brightness(1.05);
+}
